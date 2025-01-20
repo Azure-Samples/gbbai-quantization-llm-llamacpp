@@ -413,3 +413,4 @@ llama.cpp/
 # Adding model folder
 
 model/
+model_quantized/
