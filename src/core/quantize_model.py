@@ -30,6 +30,7 @@ def build_project():
     """Build the project using make in the llama.cpp directory."""
     logging.info("Building the project...")
     subprocess.run(["cmake", "-B", "build"], cwd="llama.cpp", check=True)
+    subprocess.run(["cmake", "--build", "build", "--config", "Release"], cwd="llama.cpp", check=True)
     
 
 
@@ -61,18 +62,23 @@ def convert_model_to_gguf(original_model_path, quantized_model_path):
 
     os.makedirs(quantized_model_path, exist_ok=True)
 
-    subprocess.run(
-        [
-            "python",
-            "llama.cpp/convert_hf_to_gguf.py",
-            original_model_path,
-            "--outtype",
-            "f16",
-            "--outfile",
-            f"{quantized_model_path}/FP16.gguf",
-        ],
-        check=True,
-    )
+    try:
+        subprocess.run(
+            [
+                "python",
+                "./llama.cpp/convert_hf_to_gguf.py",
+                original_model_path,
+                "--outtype",
+                "f16",
+                "--outfile",
+                f"{quantized_model_path}/FP16.gguf",
+            ],
+            check=True,
+        )
+    except subprocess.CalledProcessError as e:
+        error_message = e.stderr.decode() if e.stderr else str(e)
+        logging.error(f"Error during model conversion: {error_message}")
+        return
 
     end_time = time.time()
     logging.info(
