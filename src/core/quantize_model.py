@@ -28,8 +28,11 @@ def build_project():
     """Build the project using make in the llama.cpp directory."""
     logging.info("Building the project...")
     subprocess.run(["cmake", "-B", "build"], cwd="llama.cpp", check=True)
-    subprocess.run(["cmake", "--build", "build", "--config", "Release"], cwd="llama.cpp", check=True)
-    
+    subprocess.run(
+        ["cmake", "--build", "build", "--config", "Release"],
+        cwd="llama.cpp",
+        check=True,
+    )
 
 
 def quantize_model(quantized_model_path, method):
@@ -37,7 +40,12 @@ def quantize_model(quantized_model_path, method):
     logging.info("Quantizing the model...")
     qtype = f"{quantized_model_path}/{method.upper()}.gguf"
     subprocess.run(
-        ["./build/bin/llama-quantize", f"{quantized_model_path}/FP16.gguf", qtype, method],
+        [
+            "./build/bin/llama-quantize",
+            f"{quantized_model_path}/FP16.gguf",
+            qtype,
+            method,
+        ],
         cwd="llama.cpp",
         check=True,
     )
