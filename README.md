@@ -64,6 +64,12 @@ To get started, clone the repository:
 git clone https://github.com/Azure-Samples/gbbai-quantization-llm-llamacpp.git
 ```
 
+
+sudo apt update
+sudo apt install gcc-11
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60
+sudo update-alternatives --config gcc
+
 ### Build the Project
 
 To build the project, follow these steps:
@@ -73,7 +79,7 @@ To build the project, follow these steps:
     Clone the repo 
 
     ```sh
-    clone_repo()
+    clone_repo() -> example existant in quantization_llama_drom_fine_tune.ipynb notebook
     ```
 
     Use the following CMake command to set up your compiler:
@@ -85,25 +91,32 @@ To build the project, follow these steps:
     Alternatively, you can set the compiler paths in the `CMakeLists.txt` file before the `project` command:
 
     ```cmake
+    set CMAKE_GENERATOR=MinGW Makefiles
     set(CMAKE_CXX_COMPILER "C:/mingw64/bin/g++.exe")
     set(CMAKE_C_COMPILER "C:/mingw64/bin/gcc.exe")
     ```
 
     Replace `/path/to/g++`, `/path/to/gcc`, and `/path/to/source` with the appropriate paths on your system or add them to your system environment variables.
 
-2. **Windows Specific Instructions**
+    You will also need `nmake`, an executable used by Windows machines to execute a Makefile.
 
-    If you are using a Windows machine, you have two options:
+    If you have a Windows machine, there are two options:
 
-    - Use the `nmake` alternative `mingw` by adding this command to your script file:
+        1. Use the `nmake` alternative `mingw` by adding this command to your script file:
+            ```sh
+            -G "MinGW Makefiles" after "cmake -S . -B build"
+            ```
 
-      ```sh
-      cmake -S . -B build -G "MinGW Makefiles"
-      ```
+            or
 
-    - set CMAKE_GENERATOR=MinGW Makefiles as virtual env
+            ```sh
+            cmake -S . -B build -G "MinGW Makefiles"
+            ```
 
-3. **Build the Project**
+        2. Perform a web search for "Visual Studio Build Tools". Microsoft releases a command line build tools package as an alternative to the larger software downloads such as Visual Studio.
+
+
+2. **Build the Project**
 
     After correctly configuring the variables, run the following command to build the project:
 
@@ -114,55 +127,8 @@ To build the project, follow these steps:
     This will compile the source code and generate the necessary binaries.
 
 
-
-#### To set up your compiler, use the following CMake command:
-
-Clone the repo 
-
-```sh
-clone_repo()
-build_project() .
-```
-and then
-
-```sh
-cmake -DCMAKE_CXX_COMPILER=/path/to/g++ -DCMAKE_C_COMPILER=/path/to/gcc /path/to/source 
-
-```
-
-or set it in CMakeList.txt before project:
-
-Example:
-set CMAKE_GENERATOR=MinGW Makefiles
-set(CMAKE_CXX_COMPILER "C:/mingw64/bin/g++.exe")
-set(CMAKE_C_COMPILER "C:/mingw64/bin/gcc.exe")
-
-
-#### Replace
-
- `/path/to/g++`, `/path/to/gcc`, and `/path/to/source` with the appropriate paths on your system or add it to system env.
-
-You will also need `nmake`, an executable used by Windows machines to execute a Makefile.
-
-If you have a Windows machine, there are two options:
-
-1. Use the `nmake` alternative `mingw` by adding this command to your script file:
-    ```sh
-    -G "MinGW Makefiles" after "cmake -S . -B build"
-    ```
-
-2. Perform a web search for "Visual Studio Build Tools". Microsoft releases a command line build tools package as an alternative to the larger software downloads such as Visual Studio.
-
-
-#### After correctly configuring the variables, run the following command to build the project:
-
-```sh
-build_project() .
-```
-
-This will compile the source code and generate the necessary binaries.
-
-
+For faster build performance, refer to the official llama.cpp documentation at:
+https://github.com/ggerganov/llama.cpp/blob/master/docs/build.md
 
 ## Demo
 

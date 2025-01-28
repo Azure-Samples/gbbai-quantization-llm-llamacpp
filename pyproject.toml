@@ -29,7 +29,7 @@ texttable = "1.7.0"
 tiktoken = "0.7.0"
 tqdm = "4.66.4"
 wheel = "0.43.0"
-llama-cpp-python = "0.3.6"
+llama-cpp-python = "0.2.55"
 huggingface-hub = "0.27.1"
 torch = "*"
 transformers = "*"
@@ -44,6 +44,8 @@ azure-storage-file-datalake = "*"
 azure-storage-file-share = "*"
 azureml-fsspec = "*"
 azureml-core = "*"
+azureml-mlflow = "*"
+azureml = "*"
 
 [build-system]
 requires = ["poetry-core"]

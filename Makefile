@@ -21,7 +21,7 @@ setup_aml:
 	conda install -c conda-forge poetry
 	poetry config virtualenvs.create true
 	poetry config virtualenvs.in-project true
-	poetry lock --no-update
+	poetry lock
 	poetry install
 	conda install pip
 	conda install ipykernel
