@@ -32,7 +32,7 @@ To run the Makefile included in this project, follow these steps:
 
 1. Open a terminal and navigate to the project directory:
     ```sh
-    fine-tuning-open-source-text-generation
+    fgbbai-quantization-llm-llamacpp
     ```
 
 2. Run the Makefile using the `make` command:
@@ -53,24 +53,16 @@ To build and compile this project, you need to have CMake installed. CMake is an
 - Ensure that CMake is added to your system's PATH to easily run it from the command line.
 
 
-## Setup Your Compiler
+### Build the Project
 
+Before running build_project, install and configure GCC 11 on Ubuntu:
 
-### Clone the Repository
-
-To get started, clone the repository:
-
-```sh
-git clone https://github.com/Azure-Samples/gbbai-quantization-llm-llamacpp.git
-```
-
-
+```bash
 sudo apt update
 sudo apt install gcc-11
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60
 sudo update-alternatives --config gcc
-
-### Build the Project
+```
 
 To build the project, follow these steps:
 
@@ -102,18 +94,12 @@ To build the project, follow these steps:
 
     If you have a Windows machine, there are two options:
 
-        1. Use the `nmake` alternative `mingw` by adding this command to your script file:
-            ```sh
-            -G "MinGW Makefiles" after "cmake -S . -B build"
-            ```
-
-            or
-
+    1. Use the `nmake` alternative `mingw` by adding this command to your script file:
             ```sh
             cmake -S . -B build -G "MinGW Makefiles"
             ```
 
-        2. Perform a web search for "Visual Studio Build Tools". Microsoft releases a command line build tools package as an alternative to the larger software downloads such as Visual Studio.
+    2. Perform a web search for "Visual Studio Build Tools". Microsoft releases a command line build tools package as an alternative to the larger software downloads such as Visual Studio.
 
 
 2. **Build the Project**
@@ -132,10 +118,6 @@ https://github.com/ggerganov/llama.cpp/blob/master/docs/build.md
 
 ## Demo
 
-
-## Resources
-
-(Any additional resources or related projects)
-
+See more in quantization_llama_fine_tune jupyter notebook
 
 
