@@ -398,3 +398,19 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+
+
+# Add all aml files
+.aml*
+.python-version
+
+# Add virtual environment
+venv/
+
+# LLama-CPP Folder
+llama.cpp/
+
+# Adding model folder
+
+model/
+model_quantized/
