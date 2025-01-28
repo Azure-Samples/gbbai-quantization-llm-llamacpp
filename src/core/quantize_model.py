@@ -23,8 +23,6 @@ def clone_repo(
     """
     subprocess.run(["git", "clone", repo_url, target_dir], check=True)
 
-    build_project()
-
 
 def build_project():
     """Build the project using make in the llama.cpp directory."""
@@ -39,7 +37,7 @@ def quantize_model(quantized_model_path, method):
     logging.info("Quantizing the model...")
     qtype = f"{quantized_model_path}/{method.upper()}.gguf"
     subprocess.run(
-        ["./llama-quantize", f"{quantized_model_path}/FP16.gguf", qtype, method],
+        ["./build/bin/llama-quantize", f"{quantized_model_path}/FP16.gguf", qtype, method],
         cwd="llama.cpp",
         check=True,
     )

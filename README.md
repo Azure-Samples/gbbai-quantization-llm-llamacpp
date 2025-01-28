@@ -132,23 +132,10 @@ https://github.com/ggerganov/llama.cpp/blob/master/docs/build.md
 
 ## Demo
 
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
 
 ## Resources
 
 (Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
 
 
 
