@@ -21,11 +21,53 @@ Quantization will significantly lower memory usage and simplify deployment scena
 
 ## Quickstart
 
-```bash
+### Clone the Repository
+
+To get started, clone the repository:
+
+```sh
 git clone https://github.com/Azure-Samples/gbbai-quantization-llm-llamacpp.git
 ```
 
-### Instalation 
+
+And then:
+
+1. Update the package list:
+    ```bash
+    sudo apt update
+    ```
+
+2. Install GCC 11:
+    ```bash
+    sudo apt install gcc-11
+    ```
+
+3. Register GCC 11 as an alternative with a priority of 60:
+    ```bash
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60
+    ```
+
+4. Select the default GCC version:
+    ```bash
+    sudo update-alternatives --config gcc
+    ```
+
+This sequence ensures your system uses GCC 11 as the default compiler.
+
+
+## Prerequisites
++ [azd](https://learn.microsoft.com/azure/developer/azure-developer-cli/install-azd), used to deploy all Azure resources and assets used in this sample.
+
++ [PowerShell Core pwsh](https://github.com/PowerShell/powershell/releases) if using Windows
+
++ Python 3.11
+
++ To build and compile this project, you need to have CMake installed. CMake is an open-source, cross-platform family of tools designed to build, test, and package software. You can download and install CMake from [here](https://cmake.org/download/).
+
+- Follow the instructions on the CMake download page to install the appropriate version for your operating system.
+- Ensure that CMake is added to your system's PATH to easily run it from the command line.
+
+## Instalation 
 The Makefile is designed to set up a Python development environment using pyenv, conda, and poetry. Here's a step-by-step explanation of what each part does:
 
 To run the Makefile included in this project, follow these steps:
@@ -45,32 +87,27 @@ Replace `<target>` with the name of the target you want to run.
 
 This uses `condaenv` instead of `poetryenv` because Azure Machine Learning is built with `conda` and it can be easier to use when running code within Azure Machine Learning notebooks. If you are using VS Code and linking to the proper compute, you can modify the Makefile to use the `poetry` environment, or keep it as is, both will work properly.
 
-
-### Prerequisites
-To build and compile this project, you need to have CMake installed. CMake is an open-source, cross-platform family of tools designed to build, test, and package software. You can download and install CMake from [here](https://cmake.org/download/).
-
-- Follow the instructions on the CMake download page to install the appropriate version for your operating system.
-- Ensure that CMake is added to your system's PATH to easily run it from the command line.
+**You can set up your environment by following the steps below:**
 
 
-## Setup Your Compiler
+### Setup environment
+
+This sample uses [`azd`](https://learn.microsoft.com/azure/developer/azure-developer-cli/) and a bicep template to deploy all Azure resources, including the Azure OpenAI models.
+
+1. Login to your Azure account: `azd auth login`
+
+2. Create an environment: `azd env new`
+
+3. Run `azd up`.
+
+   + Choose a name for your resourge group.
+   + Enter a region for the resources.
+
+   The deployment creates multiple Azure resources and runs multiple jobs. It takes several minutes to complete. The deployment is complete when you get a command line notification stating "SUCCESS: Your up workflow to provision and deploy to Azure completed."
 
 
-### Clone the Repository
 
-To get started, clone the repository:
-
-```sh
-git clone https://github.com/Azure-Samples/gbbai-quantization-llm-llamacpp.git
-```
-
-
-sudo apt update
-sudo apt install gcc-11
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60
-sudo update-alternatives --config gcc
-
-### Build the Project
+## Build the Project
 
 To build the project, follow these steps:
 
